@@ -37,3 +37,8 @@ sox -t pulseaudio alsa_output.platform-bcm2835_audio.analog-stereo.monitor -r 22
 "alsa_output.platform-bcm2835_audio.analog-stereo.monitor" is het audio device op de pi dat wordt gebruikt (audio jack)
 
 "sudo /home/pi/1fm_transmitter/fm_transmitter/fm_transmitter -f 87.7 -" dit is een script dat wordt gerunt die de audio van die audiojack(.wav file van input bluetooth audio) doorstuurd naar GPIO pin4. Deze pin wordt dan gebruikt als FM-antenne en zal dan de .wav file uitzenden om te kunnen ontvangen.
+
+de commandos komen uit deze 2 videos:
+
+https://www.youtube.com/watch?v=FSyJ8aQBRlQ
+https://www.youtube.com/watch?v=tGQKjeeNNSw

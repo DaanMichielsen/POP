@@ -4,6 +4,8 @@ https://github.com/markondej/fm_transmitter.git --> originele repository van mar
 
 Geen van deze code heb ik zelf geschreven of aangepast!!!
 
+Enkel de file gebruikte commandos zal laten zien welke commandos ik heb gebruikt om het werkende te krijgen.
+
 
 # FM Transmitter
 Use the Raspberry Pi as an FM transmitter. Works on every Raspberry Pi board.

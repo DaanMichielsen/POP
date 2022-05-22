@@ -1,0 +1,39 @@
+In deze file zijn alle gebruikte commandos terug te vinden.
+
+
+commando om te verbinden met bluetooth apparaat:
+sudo systemctl start bluetooth --> bluetooth  agent starten
+bluetoothctl  --> bluetooth agent openen
+power on  --> bluetooth agent poweren
+scan on --> scannen voor bluetooth devices
+trust D4:61:2E:41:6B:59 --> gewenste bluetooth device trusten
+pair D4:61:2E:41:6B:59  --> bluetooth pairing tussen PI en device
+connect D4:61:2E:41:6B:59 --> verbinden met device, kan ook worden gedaan op het media device door op de raspberry pi te klikken tussen apparaten.
+
+commando om soundcard element te selecteren en soundcard volume in te stellen:
+amixer cset numid=3 1
+amixer -q -M sset Master 100%
+
+
+Commando om input en output selecteren:
+GSM daan:
+pactl load-module module-loopback source=bluez_source.14_D1_69_34_05_CB.a2dp_source sink=alsa_output.platform-bcm2835_audio.analog-stereo
+
+laptop daan:
+pactl load-module module-loopback source=bluez_source.98_2C_BC_46_9B_04.a2dp_source sink=alsa_output.platform-bcm2835_audio.analog-stereo
+
+Zoals men kan zien zal dit voor elk toestel anders zijn, dit omdat de source uit de lijst met bluetooth devices verbonden met de PI wordt gehaald. Dus elk device zal een unieke source hebben. De output zal altijd dezelfde zijn(audio jack op PI).
+
+
+commando om bluetooth naar fm transmitter te starten:
+GSM/laptop:
+sox -t pulseaudio alsa_output.platform-bcm2835_audio.analog-stereo.monitor -r 22050 -c 1 -b 16 -t wav - | sudo /home/pi/1fm_transmitter/fm_transmitter/fm_transmitter -f 87.7 -
+
+"sox" is een utility die wordt gebruikt om het bluetooth audio signaal om te zetten naar een .wav vorm van audio. Dit is uitzendbaar over een FM signaal
+"-r 22050 -c 1 -b 16 -t wav -" dit zijn de parameters voor die sox gebruikt om de.wav file te maken. -r staat voor bandwidth, -c voor aantal audio channels in audio file, -b voor aantal bits in elk geencodeerde sample, -t voor type file aan te geven zodat het een wave file maakt
+
+"pulseaudio" is een module gebruikt voor bluetooth audio support em audio mixing
+
+"alsa_output.platform-bcm2835_audio.analog-stereo.monitor" is het audio device op de pi dat wordt gebruikt (audio jack)
+
+"sudo /home/pi/1fm_transmitter/fm_transmitter/fm_transmitter -f 87.7 -" dit is een script dat wordt gerunt die de audio van die audiojack(.wav file van input bluetooth audio) doorstuurd naar GPIO pin4. Deze pin wordt dan gebruikt als FM-antenne en zal dan de .wav file uitzenden om te kunnen ontvangen.

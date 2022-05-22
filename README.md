@@ -1,4 +1,4 @@
-##Disclaimer
+## Disclaimer
 Dit is de README van de repository die ik heb gebruikt om de transmitter te laten werken. Hier kan men de setup, instellingen en fixes terugvinden.
 https://github.com/markondej/fm_transmitter.git --> originele repository van markondej
 
